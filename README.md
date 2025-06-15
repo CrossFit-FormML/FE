@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CrossFit 자세 분석 프론트엔드
 
-## Getting Started
+크로스핏 운동 자세를 실시간으로 분석하고 피드백을 제공하는 React 기반 웹 애플리케이션입니다.
 
-First, run the development server:
+## 프로젝트 구조
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+├── package.json                    # 프로젝트 설정 및 의존성
+├── package-lock.json               # 의존성 잠금 파일
+├── README.md
+├── src/
+│   └── services/
+│       └── api.js                  # API 통신 모듈
+└── app/
+    └── page.js                     # 메인 페이지 
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 주요 기능
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **실시간 자세 분석**: MediaPipe를 사용한 실시간 포즈 추출
+- **카메라 연동**: 웹캠을 통한 실시간 동작 캡처
+- **서버 통신**: Flask ML 서버와 API 통신
+- **결과 시각화**: 자세 분석 결과를 사용자에게 표시
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 기술 스택
 
-## Learn More
+- **Framework**: Next.js 15.3.2
+- **Language**: React 19.0.0
+- **Pose Detection**: MediaPipe Pose
+- **HTTP Client**: Axios
+- **Styling**: Tailwind CSS
 
-To learn more about Next.js, take a look at the following resources:
+## 실행 방법
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# 의존성 설치
+npm install
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# 개발 서버 실행
+npm run dev
+```
 
-## Deploy on Vercel
+애플리케이션은 `http://localhost:3000`에서 실행됩니다.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## API 설정
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`src/services/api.js`에서 서버 URL을 설정할 수 있습니다:
+```javascript
+const API_URL = "http://localhost:8000";
+```
+
+## 주요 패키지
+
+- `@mediapipe/pose`: 포즈 감지
+- `@mediapipe/camera_utils`: 카메라 유틸리티
+- `@mediapipe/drawing_utils`: 포즈 시각화
+- `axios`: HTTP 통신
+
+## 참고사항
+
+- 현재 미완성 상태입니다
+- Flask ML 서버가 실행되어야 정상 동작합니다
+- 웹캠 접근 권한이 필요합니다
